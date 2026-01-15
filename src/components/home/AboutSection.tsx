@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Star, ArrowRight, Clock, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export const AboutSection = () => {
   return (
@@ -32,55 +32,77 @@ export const AboutSection = () => {
             </Button>
           </motion.div>
 
-          {/* Right Card */}
+          {/* Right Card - Integrations */}
           <motion.div
             initial={{ opacity: 0, rotateY: 15 }}
             whileInView={{ opacity: 1, rotateY: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="card-glass p-8 lg:p-10 bg-card/80 hover:bg-card/90 transition-colors duration-300"
+            className="card-glass p-8 lg:p-10 bg-card/80 hover:bg-card/90 transition-colors duration-300 overflow-hidden"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              {/* 24/7 Support */}
-              <div className="flex flex-col">
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-4xl font-heading font-bold gradient-text">24</span>
-                  <span className="text-2xl font-heading font-bold text-foreground">/7</span>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Support that's available when you need it—setup help, troubleshooting, and ongoing optimization.
-                </p>
-              </div>
+            <h3 className="text-2xl lg:text-3xl font-heading font-bold text-foreground mb-2">
+              Seamless Integrations
+            </h3>
+            <p className="text-muted-foreground mb-6">
+              Connect your POS with the platforms your customers already use.
+            </p>
 
-              <div className="hidden md:flex items-center justify-center">
-                <div className="w-px h-full bg-border" />
-              </div>
-
-              {/* Fast */}
-              <div className="flex flex-col md:col-span-1">
-                <div className="flex items-center gap-2 mb-2">
-                  <Zap className="text-primary" size={28} />
-                  <span className="text-3xl font-heading font-bold gradient-text">Fast</span>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Next-day funding options and quick onboarding for most businesses.
-                </p>
-              </div>
-            </div>
-
-            {/* Rating */}
-            <div className="flex items-center gap-4 pt-6 border-t border-border">
-              <div className="flex gap-1">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <Star
-                    key={star}
-                    size={20}
-                    className="fill-primary text-primary"
-                  />
+            {/* Integration Carousel */}
+            <div className="relative">
+              {/* Gradient overlays for smooth edges */}
+              <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-card/80 to-transparent z-10" />
+              <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-card/80 to-transparent z-10" />
+              
+              {/* Scrolling container */}
+              <div className="flex gap-6 animate-scroll">
+                {/* First set of icons */}
+                {[
+                  { name: "UberEats", icon: "🍔", color: "bg-green-500/20" },
+                  { name: "DoorDash", icon: "🚗", color: "bg-red-500/20" },
+                  { name: "Grubhub", icon: "🍕", color: "bg-orange-500/20" },
+                  { name: "Postmates", icon: "📦", color: "bg-blue-500/20" },
+                  { name: "Toast", icon: "🍞", color: "bg-amber-500/20" },
+                  { name: "Square", icon: "⬜", color: "bg-slate-500/20" },
+                  { name: "QuickBooks", icon: "📊", color: "bg-emerald-500/20" },
+                  { name: "Yelp", icon: "⭐", color: "bg-red-500/20" },
+                ].map((integration, index) => (
+                  <div
+                    key={`first-${index}`}
+                    className={`flex-shrink-0 flex flex-col items-center justify-center p-4 rounded-xl ${integration.color} border border-border/50 min-w-[100px]`}
+                  >
+                    <span className="text-3xl mb-2">{integration.icon}</span>
+                    <span className="text-xs text-muted-foreground font-medium whitespace-nowrap">
+                      {integration.name}
+                    </span>
+                  </div>
+                ))}
+                {/* Duplicate for seamless loop */}
+                {[
+                  { name: "UberEats", icon: "🍔", color: "bg-green-500/20" },
+                  { name: "DoorDash", icon: "🚗", color: "bg-red-500/20" },
+                  { name: "Grubhub", icon: "🍕", color: "bg-orange-500/20" },
+                  { name: "Postmates", icon: "📦", color: "bg-blue-500/20" },
+                  { name: "Toast", icon: "🍞", color: "bg-amber-500/20" },
+                  { name: "Square", icon: "⬜", color: "bg-slate-500/20" },
+                  { name: "QuickBooks", icon: "📊", color: "bg-emerald-500/20" },
+                  { name: "Yelp", icon: "⭐", color: "bg-red-500/20" },
+                ].map((integration, index) => (
+                  <div
+                    key={`second-${index}`}
+                    className={`flex-shrink-0 flex flex-col items-center justify-center p-4 rounded-xl ${integration.color} border border-border/50 min-w-[100px]`}
+                  >
+                    <span className="text-3xl mb-2">{integration.icon}</span>
+                    <span className="text-xs text-muted-foreground font-medium whitespace-nowrap">
+                      {integration.name}
+                    </span>
+                  </div>
                 ))}
               </div>
-              <p className="text-muted-foreground">Trusted by local businesses</p>
             </div>
+
+            <p className="text-sm text-muted-foreground mt-6 text-center">
+              + 50 more delivery & business integrations
+            </p>
           </motion.div>
         </div>
       </div>
