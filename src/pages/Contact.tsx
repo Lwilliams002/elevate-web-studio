@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
+import emailjs from "@emailjs/browser";
 import { 
   Phone, 
   Mail, 
@@ -14,7 +15,11 @@ import {
   Send
 } from "lucide-react";
 
+// Initialize EmailJS with your public key
+emailjs.init('kCnU9cJluhd_g1yap');
+
 const Contact = () => {
+  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -33,14 +38,26 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!formRef.current) return;
+    
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    toast.success("Message sent successfully! We'll get back to you soon.");
-    setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-    setIsSubmitting(false);
+    try {
+      await emailjs.sendForm(
+        'service_pxli615',
+        'template_upy29dc',
+        formRef.current
+      );
+      
+      toast.success("Message sent successfully! We'll get back to you soon.");
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      toast.error("Something went wrong. Please try again or call us.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -144,7 +161,7 @@ const Contact = () => {
                   Send Us a Message
                 </h2>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <Input
