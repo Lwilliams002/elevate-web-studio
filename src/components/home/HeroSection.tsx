@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight, CreditCard, Smartphone, Shield } from "lucide-react";
+import skytabImage from "@/assets/skytab-pos.webp";
 
 export const HeroSection = () => {
   return (
-    <section className="hero-radial-bg py-20 lg:py-32">
+    <section className="hero-radial-bg py-20 lg:py-32 overflow-hidden">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           {/* Left Content */}
@@ -38,74 +39,69 @@ export const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Right Content - Floating Cards */}
+          {/* Right Content - SkyTab Image with Floating Cards */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative flex items-center justify-center"
           >
-            <div className="relative w-full max-w-md aspect-square">
+            <div className="relative w-full max-w-lg">
               {/* Background glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-full blur-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-primary/30 rounded-full blur-3xl scale-110" />
               
-              {/* Main card */}
+              {/* Main SkyTab Image */}
               <motion.div
-                animate={{ y: [-15, 0, -15] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-80 card-glass p-6 flex flex-col justify-between shadow-2xl"
+                animate={{ y: [-10, 5, -10] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="relative z-10"
               >
-                <div>
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accent to-primary flex items-center justify-center mb-4">
-                    <CreditCard className="text-background" size={24} />
-                  </div>
-                  <h3 className="text-xl font-heading font-bold gradient-text-light mb-2">
-                    Smart POS
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Accept payments anywhere with modern terminals
-                  </p>
+                <img 
+                  src={skytabImage} 
+                  alt="SkyTab POS System" 
+                  className="w-full h-auto drop-shadow-2xl"
+                />
+              </motion.div>
+
+              {/* Floating small card - top left */}
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="absolute -top-4 -left-4 lg:-left-8 w-36 lg:w-44 card-glass p-3 lg:p-4 flex items-center gap-3 shadow-xl z-20"
+              >
+                <div className="w-9 h-9 lg:w-10 lg:h-10 rounded-xl bg-gradient-to-br from-accent to-primary flex items-center justify-center shrink-0">
+                  <Smartphone size={18} className="text-background" />
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="flex -space-x-2">
-                    {[1, 2, 3].map((i) => (
-                      <div
-                        key={i}
-                        className="w-8 h-8 rounded-full bg-gradient-to-br from-accent to-primary border-2 border-card"
-                      />
-                    ))}
-                  </div>
-                  <span className="text-xs text-muted-foreground">500+ businesses</span>
+                <div>
+                  <p className="text-[10px] lg:text-xs text-muted-foreground">Mobile Ready</p>
+                  <p className="text-xs lg:text-sm font-semibold text-foreground">On-the-go</p>
                 </div>
               </motion.div>
 
-              {/* Floating small card - left */}
+              {/* Floating small card - bottom right */}
               <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute top-10 left-0 w-40 h-24 card-glass p-4 flex items-center gap-3 shadow-xl"
-              >
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-primary flex items-center justify-center shrink-0">
-                  <Smartphone size={20} className="text-background" />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Mobile Ready</p>
-                  <p className="text-sm font-semibold text-foreground">On-the-go</p>
-                </div>
-              </motion.div>
-
-              {/* Floating small card - right */}
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
+                animate={{ y: [0, 12, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-10 right-0 w-40 h-24 card-glass p-4 flex items-center gap-3 shadow-xl"
+                className="absolute -bottom-4 -right-4 lg:-right-8 w-36 lg:w-44 card-glass p-3 lg:p-4 flex items-center gap-3 shadow-xl z-20"
               >
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shrink-0">
-                  <Shield size={20} className="text-background" />
+                <div className="w-9 h-9 lg:w-10 lg:h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shrink-0">
+                  <Shield size={18} className="text-background" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Secure</p>
-                  <p className="text-sm font-semibold text-foreground">24/7 Support</p>
+                  <p className="text-[10px] lg:text-xs text-muted-foreground">Secure</p>
+                  <p className="text-xs lg:text-sm font-semibold text-foreground">24/7 Support</p>
+                </div>
+              </motion.div>
+
+              {/* Stats badge - top right */}
+              <motion.div
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-8 -right-2 lg:right-0 card-glass px-4 py-2 shadow-xl z-20"
+              >
+                <div className="flex items-center gap-2">
+                  <CreditCard size={16} className="text-primary" />
+                  <span className="text-xs lg:text-sm font-semibold text-foreground">500+ Businesses</span>
                 </div>
               </motion.div>
             </div>

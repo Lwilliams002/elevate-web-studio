@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -20,15 +21,11 @@ export const Header = () => {
       <nav className="container mx-auto py-5">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-primary flex items-center justify-center">
-                <span className="text-xl font-bold text-background">A</span>
-              </div>
-              <span className="text-xl font-heading font-bold gradient-text">
-                Apex POS
-              </span>
-            </div>
+          <Link to="/" className="flex items-center gap-3">
+            <img src={logo} alt="Apex POS Solutions" className="h-12 w-auto" />
+            <span className="text-xl font-heading font-bold gradient-text hidden sm:block">
+              Apex POS
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

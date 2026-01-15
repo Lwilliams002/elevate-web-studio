@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, Clock, Facebook, Instagram, Twitter } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const footerLinks = [
   { name: "Home", path: "/" },
@@ -16,10 +17,8 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-primary flex items-center justify-center">
-                <span className="text-xl font-bold text-background">A</span>
-              </div>
+            <Link to="/" className="flex items-center gap-3 mb-4">
+              <img src={logo} alt="Apex POS Solutions" className="h-14 w-auto" />
               <span className="text-xl font-heading font-bold gradient-text">
                 Apex POS Solutions
               </span>

@@ -16,6 +16,7 @@ import {
   Printer,
   Clock
 } from "lucide-react";
+import skytabImage from "@/assets/skytab-pos.webp";
 
 const skytabFeatures = [
   { icon: Monitor, title: "Tables & Floorplan", description: "Manage dine-in service with table tracking, split checks, and quick seat moves." },
